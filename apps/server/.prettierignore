@@ -1,0 +1,8 @@
+node_modules
+out
+build
+uploads
+public
+.gitignore
+eslint.config.mjs
+.env

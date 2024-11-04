@@ -1,0 +1,25 @@
+{
+  "name": "blog_app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev --filter=./apps/**",
+    "frontend:dev": "turbo dev --filter=./apps/frontend",
+    "server:dev": "turbo dev --filter=./apps/server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "packageManager": "npm@9.6.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.2.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

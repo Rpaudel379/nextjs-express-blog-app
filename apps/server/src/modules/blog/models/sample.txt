@@ -1,0 +1,65 @@
+// category
+"categories": 
+[
+            {
+                "name": "programming",
+                "id": "66fa61b839a0d2305b6b7624"
+            },
+            {
+                "name": "nepal",
+                "id": "66f9814665492f8048f68cdd"
+            },
+            {
+                "name": "football",
+                "id": "66f9806c65492f8048f68ccf"
+            },
+            {
+                "name": "news",
+                "id": "66f9805665492f8048f68ccb"
+            },
+            {
+                "name": "sports",
+                "id": "66f9804465492f8048f68cc9"
+            },
+            {
+                "name": "general",
+                "id": "66f9803265492f8048f68cc7"
+            },
+            {
+                "name": "technology",
+                "id": "66f9800665492f8048f68cc5"
+            }
+]
+
+// tags
+ "tags": 
+ [
+            {
+                "name": "javascript",
+                "id": "66fa60ff39a0d2305b6b761a"
+            },
+            {
+                "name": "nodejs",
+                "id": "66f98221f95a9a584498dc2d"
+            },
+            {
+                "name": "gym",
+                "id": "66f9821df95a9a584498dc2b"
+            },
+            {
+                "name": "sporting",
+                "id": "66f98215f95a9a584498dc29"
+            },
+            {
+                "name": "coding",
+                "id": "66f98210f95a9a584498dc27"
+            },
+            {
+                "name": "table tennis",
+                "id": "66f9820bf95a9a584498dc25"
+            },
+            {
+                "name": "football",
+                "id": "66f98201f95a9a584498dc23"
+            }
+]
