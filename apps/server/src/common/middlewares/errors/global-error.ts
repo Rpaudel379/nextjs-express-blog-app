@@ -9,7 +9,7 @@ export const globalError = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _next: NextFunction
 ) => {
-  // console.log(err.message);
+  console.log(err);
 
   err.statusCode = err.statusCode || 500;
   err.status = err.status || ERROR;

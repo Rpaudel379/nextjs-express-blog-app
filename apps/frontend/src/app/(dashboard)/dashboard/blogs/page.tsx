@@ -1,3 +1,4 @@
+import DashboardBlogPage from "@/modules/dashboard/blogs/blog-page";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -7,11 +8,7 @@ export const metadata: Metadata = {
 };
 
 const DashboardBlogs = () => {
-  return (
-    <div className="bg-slate-200">
-      <h1 className="text-4xl">My blogs</h1>
-    </div>
-  );
+  return <DashboardBlogPage />;
 };
 
 export default DashboardBlogs;

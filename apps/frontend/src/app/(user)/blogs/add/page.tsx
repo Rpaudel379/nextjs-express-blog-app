@@ -1,9 +1,7 @@
+import AddBlogPage from "@/modules/blog/add-blog-page";
+
 const Page = () => {
-  return (
-    <>
-      <h1>add new blog</h1>
-    </>
-  );
+  return <AddBlogPage />;
 };
 
 export default Page;

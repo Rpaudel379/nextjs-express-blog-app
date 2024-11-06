@@ -10,7 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "packageManager": "npm@9.6.4",
   "workspaces": [
     "apps/*",

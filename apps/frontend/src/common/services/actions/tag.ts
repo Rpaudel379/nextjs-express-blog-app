@@ -8,7 +8,7 @@ import { createTag, deleteTag, updateTag } from "@services/requests/tag";
 
 export const createTagAction = async ({
   name,
-}: TagSchema): Promise<ServerActionState> => {
+}: TagSchema): Promise<ServerActionState<undefined>> => {
   // server side validation
   const validatedField = tagSchema.safeParse({ name });
   console.log(validatedField);
@@ -53,7 +53,7 @@ export const createTagAction = async ({
 export const updateTagAction = async ({
   id,
   name,
-}: TagType): Promise<ServerActionState> => {
+}: TagType): Promise<ServerActionState<undefined>> => {
   const validatedField = tagSchema.safeParse({ name });
   console.log(validatedField);
 

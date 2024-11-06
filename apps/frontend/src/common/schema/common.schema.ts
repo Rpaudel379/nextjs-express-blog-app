@@ -34,8 +34,9 @@ export type ApiResponse<T> = {
 //   success: undefined | boolean;
 // };
 
-export type ServerActionState = {
+export type ServerActionState<T> = {
   errors: Record<string, string[]>;
   message: string;
   success: boolean;
+  data?: T;
 };

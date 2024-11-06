@@ -2,7 +2,7 @@ import { ApiResponse } from "@/common/schema/common.schema";
 import { CategoryType } from "@/common/schema/category.schema";
 import { BACKEND_URL } from "@assets/constants/constants";
 
-export const fetchCategories = async () => {
+export const  fetchCategories = async () => {
   try {
     const response = await fetch(`${BACKEND_URL}/blogs/category`, {
       method: "GET",
@@ -64,7 +64,7 @@ export const deleteCategory = async (id: string) => {
     const response = await fetch(`${BACKEND_URL}/blogs/category/${id}`, {
       method: "DELETE",
     });
-
+  
     const deleteCategory: ApiResponse<CategoryType> = await response.json();
 
     return deleteCategory;

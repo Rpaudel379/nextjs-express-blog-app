@@ -8,6 +8,7 @@ import {
 } from "@/common/components/ui/card";
 import Image from "next/image";
 import { fetchBlogById } from "@/common/services/requests/blogs";
+import { BlogType } from "@/common/schema/blog.schema";
 
 // async function getBlogById(id: string) {
 //   const blog = await fetchBlogById(id);
@@ -20,7 +21,7 @@ type Props = {
 
 const BlogPage = async ({ id }: Props) => {
   const { data } = await fetchBlogById(id);
-  const blog = data!;
+  const blog : BlogType = data!;
 
   return (
     <div className="flex justify-center">

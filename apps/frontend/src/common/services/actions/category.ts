@@ -15,8 +15,7 @@ import { ServerActionState } from "@/common/schema/common.schema";
 
 export const createCategoryAction = async ({
   name,
-}: CategorySchema): Promise<ServerActionState> => {
-
+}: CategorySchema): Promise<ServerActionState<undefined>> => {
   // server side validation
   const validatedField = categorySchema.safeParse({ name });
   console.log(validatedField);
@@ -61,7 +60,7 @@ export const createCategoryAction = async ({
 export const updateCategoryAction = async ({
   id,
   name,
-}: CategoryType): Promise<ServerActionState> => {
+}: CategoryType): Promise<ServerActionState<undefined>> => {
   const validatedField = categorySchema.safeParse({ name });
   console.log(validatedField);
 
