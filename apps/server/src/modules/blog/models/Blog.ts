@@ -32,6 +32,9 @@ const blogSchema = new mongoose.Schema<BlogEntity>(
       trim: true,
       required: true
     },
+    excerpt: {
+      type: String
+    },
     category: {
       ref: "Category",
       type: mongoose.Schema.Types.ObjectId,

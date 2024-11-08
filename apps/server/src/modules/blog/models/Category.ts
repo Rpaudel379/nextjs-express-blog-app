@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+  import mongoose, { Document } from "mongoose";
 import { CategorySchemaDTO } from "@blog/dto/category.dto";
 
 // Define the Category interface

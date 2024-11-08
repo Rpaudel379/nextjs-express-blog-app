@@ -1,10 +1,13 @@
 import { z } from "zod";
 
-export const idSchema = z.string({
-  required_error: "id is required",
-});
+const objectIdRegex = /^[a-f\d]{24}$/i;
 
-// z.string().regex(/^[0-9a-f]{24}$/);
+export const idSchema = z
+  .string({
+    required_error: "id is required",
+  })
+  .min(1, "This field is  required")
+  .regex(objectIdRegex, { message: "valid Id is required" });
 
 export type Id = z.infer<typeof idSchema>;
 

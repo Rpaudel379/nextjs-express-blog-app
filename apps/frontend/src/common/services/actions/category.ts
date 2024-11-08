@@ -18,7 +18,6 @@ export const createCategoryAction = async ({
 }: CategorySchema): Promise<ServerActionState<undefined>> => {
   // server side validation
   const validatedField = categorySchema.safeParse({ name });
-  console.log(validatedField);
 
   if (!validatedField.success) {
     return {
@@ -32,13 +31,12 @@ export const createCategoryAction = async ({
 
   try {
     const response = await createCategory(validatedField.data.name);
-    console.log("resp", response);
 
     if (response.status === "failed") {
       return {
-        errors: response.errors!,
         success: false,
         message: "failed to create category",
+        errors: response.errors!,
       };
     }
 
@@ -62,7 +60,6 @@ export const updateCategoryAction = async ({
   name,
 }: CategoryType): Promise<ServerActionState<undefined>> => {
   const validatedField = categorySchema.safeParse({ name });
-  console.log(validatedField);
 
   if (!validatedField.success) {
     return {
@@ -74,22 +71,21 @@ export const updateCategoryAction = async ({
 
   try {
     const response = await updateCategory(id, validatedField.data.name);
-    console.log("resp", response);
 
-    if (response.status === "failed") {
+    if (response.status === "failed" || response.status === "error") {
       return {
-        errors: response.errors!,
         success: false,
         message: "failed to update category",
+        errors: response.errors!,
       };
     }
 
     revalidatePath("/dashboard/category");
 
     return {
-      errors: {},
-      message: "category updated",
       success: true,
+      message: "category updated",
+      errors: {},
     };
   } catch (error) {
     console.log("ee", error);
@@ -99,7 +95,9 @@ export const updateCategoryAction = async ({
   }
 };
 
-export const deleteCategoryAction = async (id: string) => {
+export const deleteCategoryAction = async (
+  id: string
+): Promise<ServerActionState<undefined>> => {
   // console.log(Object.fromEntries(formdata));
   try {
     const response = await deleteCategory(id);

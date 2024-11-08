@@ -21,13 +21,15 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
-      "@common/*": ["./src/common/*"],
       "@components/*": ["./src/common/components/*"],
       "@assets/*": ["./src/common/assets/*"],
       "@services/*": ["./src/common/services/*"],
       "@utils/*": ["./src/common/utils/*"],
       "@hooks/*": ["./src/common/hooks/*"],
-      "@modules/*": ["./src/modules/*"]
+      "@schema/*": ["./src/common/schema/*"],
+      "@types/*": ["./src/common/types/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@common/*": ["./src/common/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

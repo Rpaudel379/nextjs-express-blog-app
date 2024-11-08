@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { Button } from "@components/ui/button";
+import { BlogType } from "@/common/schema/blog.schema";
 
-const Blogs = () => {
+type Props = {
+  blogs?: BlogType[];
+};
+
+const Blogs = ({}: Props) => {
   return (
     <div>
       <div className="space-y-5 flex-col">

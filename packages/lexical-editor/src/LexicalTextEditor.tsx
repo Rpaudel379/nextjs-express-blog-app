@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import "./styles.css";
 import { UserData } from "./components/Editor/Editor";

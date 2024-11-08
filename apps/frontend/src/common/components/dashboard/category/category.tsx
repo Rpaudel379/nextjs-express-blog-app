@@ -10,9 +10,10 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Button } from "@components/ui/button";
 import CategoryForm from "@components/dashboard/category/category-form";
+import { ServerActionState } from "@/common/schema/common.schema";
 
 type Props = {
-  categories: CategoryType[];
+  categories?: CategoryType[];
 };
 
 const Category = ({ categories }: Props) => {
@@ -21,7 +22,8 @@ const Category = ({ categories }: Props) => {
 
   const onDelete = async (id: string) => {
     toast("loading ...");
-    const deleteCategory = await deleteCategoryAction(id);
+    const deleteCategory: ServerActionState<undefined> =
+      await deleteCategoryAction(id);
     if (deleteCategory.success) {
       toast.success(deleteCategory.message);
     } else {
@@ -42,7 +44,7 @@ const Category = ({ categories }: Props) => {
         <Button type="button" onClick={() => setOpenModel(true)}>
           Add Category
         </Button>
-        <DataTable data={categories} columns={columns} />
+        {categories && <DataTable data={categories} columns={columns} />}
       </div>
 
       <Modal

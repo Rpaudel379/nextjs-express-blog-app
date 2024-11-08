@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -9,6 +11,7 @@ import {
 import Image from "next/image";
 import { BlogType } from "@/common/schema/blog.schema";
 import Link from "next/link";
+import { extractFirstValidParagraph } from "@/common/utils/rich-text-extractor";
 
 const BlogThumbnail = ({
   category,
@@ -18,7 +21,15 @@ const BlogThumbnail = ({
   tags,
   title,
   id,
+  excerpt,
 }: BlogType) => {
+
+  // if excerpt is not present, it will extract from the Richtext using DOMParser
+  let shortDescription;
+  if (!excerpt) {
+    shortDescription = extractFirstValidParagraph(description);
+  }
+
   return (
     <div>
       <Link href={`/blogs/${id}`}>
@@ -45,7 +56,9 @@ const BlogThumbnail = ({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <CardDescription>{description}</CardDescription>
+            <CardDescription>
+              {excerpt ? excerpt : shortDescription}
+            </CardDescription>
           </CardContent>
           <CardFooter>
             <CardDescription>

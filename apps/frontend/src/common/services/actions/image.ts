@@ -2,35 +2,28 @@
 
 import { uploadImage } from "@services/requests/image";
 
-// import { ImageType } from "@common/schema/image.schema";
 import { ServerActionState } from "@/common/schema/common.schema";
 import { ImageType } from "@/common/schema/image.schema";
 
 export const uploadImageAction = async (
   formData: FormData
 ): Promise<ServerActionState<ImageType>> => {
-  console.log("`````````````````");
-  console.log("`````````````````");
-
-  console.log(formData);
-
   try {
     const response = await uploadImage(formData);
-    console.log("image resp", response);
 
     if (response.status === "failed" || response.status === "error") {
       return {
-        errors: response.errors || {},
         success: false,
-        message: "failed to upload",
+        message: "failed to upload image",
+        errors: response.errors || {},
       };
     }
 
     return {
-      errors: {},
       message: "image uploaded",
       success: true,
       data: response.data,
+      errors: {},
     };
   } catch (error) {
     console.log("ee", error);

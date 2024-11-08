@@ -1,8 +1,30 @@
 import { BACKEND_URL } from "@/common/assets/constants/constants";
 import { ApiError } from "@/common/utils/errors/api-error";
-import { BlogType } from "@/common/schema/blog.schema";
+import { BlogSchema, BlogType } from "@/common/schema/blog.schema";
 import { ApiResponse } from "@/common/schema/common.schema";
 import { notFound } from "next/navigation";
+
+export const createBlog = async (blog: BlogSchema) => {
+  try {
+    console.log(blog);
+    // throw new Error("bye");
+    const response = await fetch(`${BACKEND_URL}/blogs`, {
+      method: "POST",
+      body: JSON.stringify(blog),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const newBlog: ApiResponse<BlogType> = await response.json();
+
+    return newBlog;
+  } catch (error) {
+    // uncaught error
+    // will be thrown to the nearest error.tsx page
+    throw new Error("Oops, Something went wrong! Please try again");
+  }
+};
 
 export const fetchBlogs = async () => {
   try {
@@ -48,6 +70,26 @@ export const fetchBlogById = async (id: string) => {
       }
     }
     // uncaught error
+    throw new Error("Oops, Something went wrong! Please try again");
+  }
+};
+
+export const updateBlog = async (id: string, blog: BlogSchema) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/blogs/blog/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(blog),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const updateBlog: ApiResponse<BlogType> = await response.json();
+
+    return updateBlog;
+  } catch (error) {
+    // uncaught error
+    // will be thrown to the nearest error.tsx page
     throw new Error("Oops, Something went wrong! Please try again");
   }
 };

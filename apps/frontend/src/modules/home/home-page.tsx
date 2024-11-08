@@ -1,19 +1,17 @@
 import { fetchBlogs } from "@services/requests/blogs";
 import BlogThumbnail from "@modules/blog/blog-thumbnail";
-// import BlogMenu from "@/common/components/user/BlogMenu";
-// import Categories from "@modules/category/categories";
-// import Tags from "@modules/tag/tags";
+import { BlogType } from "@/common/schema/blog.schema";
+import { Pagination } from "@/common/schema/common.schema";
 
 const HomePage = async () => {
-  const { data } = await fetchBlogs();
+  const { data, pagination }: { data?: BlogType[]; pagination?: Pagination } =
+    await fetchBlogs();
+
+  //todo implement infinite scrolling with pagination
+  console.log(pagination);
 
   return (
-    <div className="w-full my-auto">
-      {/* <BlogMenu>
-        <Categories />
-        <Tags />
-      </BlogMenu> */}
-
+    <div className="w-full my-auto mb-10">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data?.length === 0 && (
           <div>
@@ -32,6 +30,7 @@ const HomePage = async () => {
             primaryImage={blog.primaryImage}
             images={blog.images}
             createdAt={blog.createdAt}
+            excerpt={blog.excerpt}
           />
         ))}
       </div>

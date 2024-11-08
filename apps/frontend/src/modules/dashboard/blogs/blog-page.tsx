@@ -1,20 +1,20 @@
 import { fetchBlogs } from "@services/requests/blogs";
 import Blogs from "@/common/components/dashboard/blogs/blogs";
+import { BlogType } from "@/common/schema/blog.schema";
 
 const DashboardBlogPage = async () => {
-  const blogs = await fetchBlogs();
+  const { data: blogs }: { data?: BlogType[] } = await fetchBlogs();
 
   return (
     <div className="space-y-5 text-center">
       <h1 className="text-4xl text-center">My Blogs</h1>
-
-      {blogs.data?.length === 0 && (
+      {blogs?.length === 0 && (
         <div>
           <h1 className="text-3xl">No Blogs</h1>
         </div>
       )}
-
-      <Blogs />
+      <h1 className="text-xl underline">todo - table</h1>
+      <Blogs blogs={blogs} />
     </div>
   );
 };

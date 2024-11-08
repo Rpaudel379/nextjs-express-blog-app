@@ -26,13 +26,19 @@ export const UploadImage: React.FC<Props> = ({
   onRemove,
   value: selectedFiles = [],
 }) => {
-  const mapFilesToObject = (files: FileList | null, callBack?: (file: UploadedFile[]) => void) => {
+  const mapFilesToObject = (
+    files: FileList | null,
+    callBack?: (file: UploadedFile[]) => void
+  ) => {
     if (files) {
       const newFiles: UploadedFile[] = Array.from(files).map((file) => ({
         file,
         url: URL.createObjectURL(file),
       }));
-      callBack && callBack(allowMultiple ? [...selectedFiles, ...newFiles] : [...newFiles]);
+      callBack &&
+        callBack(
+          allowMultiple ? [...selectedFiles, ...newFiles] : [...newFiles]
+        );
     }
   };
 
@@ -54,7 +60,10 @@ export const UploadImage: React.FC<Props> = ({
     }
   };
 
-  const handleRemove = (event: React.MouseEvent<HTMLElement>, index: number) => {
+  const handleRemove = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number
+  ) => {
     event.stopPropagation();
     onRemove && onRemove(index);
   };
@@ -75,14 +84,24 @@ export const UploadImage: React.FC<Props> = ({
                 key={index}
                 className="file-preview"
                 style={{
-                  flexBasis: selectedFiles?.length <= 1 ? "calc(100% - 8px)" : "calc(50% - 8px)",
+                  flexBasis:
+                    selectedFiles?.length <= 1
+                      ? "calc(100% - 8px)"
+                      : "calc(50% - 8px)",
                 }}
               >
                 <div>
-                  <button className="remove-button" onClick={(e) => handleRemove(e, index)}>
+                  <button
+                    className="remove-button"
+                    onClick={(e) => handleRemove(e, index)}
+                  >
                     X
                   </button>
-                  <img src={uploadedFile?.url} alt="Selected" className="file-preview__image" />
+                  <img
+                    src={uploadedFile?.url}
+                    alt="Selected"
+                    className="file-preview__image"
+                  />
                 </div>
               </div>
             ))
@@ -100,6 +119,7 @@ export const UploadImage: React.FC<Props> = ({
         <input
           type="file"
           id="fileInput"
+          accept="image/*"
           name={name}
           className="file-input"
           onChange={handleFileChange}

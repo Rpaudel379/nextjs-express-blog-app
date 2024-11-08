@@ -30,7 +30,7 @@ export const getAllBlogs = async (
   res: Response,
   next: NextFunction
 ) => {
-  try { 
+  try {
     const page = parseInt(req.query.page as string) || PAGE;
     const pageSize = parseInt(req.query.pageSize as string) || PAGE_SIZE;
 

@@ -17,6 +17,7 @@ export const blogSchemaDTO = z.object({
     })
     .min(10, "please write more description")
     .max(1000, "max limit for description is 1000 chars"),
+  excerpt: z.string().optional(),
   // category: z.custom<mongoose.Schema.Types.ObjectId>(),
   category: IdSchema,
   tags: z.array(IdSchema).optional(),
@@ -39,3 +40,4 @@ export const blogDTO = blogSchemaDTO.merge(
 
 export type BlogSchemaDTO = z.infer<typeof blogSchemaDTO>;
 export type BlogDTO = z.infer<typeof blogDTO>;
+  

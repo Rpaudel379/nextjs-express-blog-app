@@ -45,7 +45,7 @@ const CategoryForm = ({ category, onSuccess }: Props) => {
       if (data.name === category?.name) {
         return;
       }
-      let categoryAction: ServerActionState;
+      let categoryAction: ServerActionState<undefined>;
 
       if (category) {
         categoryAction = await updateCategoryAction({
@@ -59,6 +59,7 @@ const CategoryForm = ({ category, onSuccess }: Props) => {
       if (categoryAction.success) {
         toast.success(categoryAction.message);
         form.reset({ name: "" });
+        
         onSuccess?.();
       } else {
         // errors can be of category name or id
