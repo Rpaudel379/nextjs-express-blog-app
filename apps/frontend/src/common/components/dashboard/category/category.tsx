@@ -21,7 +21,7 @@ const Category = ({ categories }: Props) => {
   const [category, setCategory] = useState<CategoryType | null>(null);
 
   const onDelete = async (id: string) => {
-    toast("loading ...");
+    toast("loading...");
     const deleteCategory: ServerActionState<undefined> =
       await deleteCategoryAction(id);
     if (deleteCategory.success) {
@@ -37,7 +37,7 @@ const Category = ({ categories }: Props) => {
   };
 
   const columns = getCategoryColumns({ onEdit, onDelete });
-
+ 
   return (
     <div>
       <div className="space-y-5 flex-col">

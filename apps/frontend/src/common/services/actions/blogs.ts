@@ -2,7 +2,8 @@
 
 import { blogSchema, BlogSchema, BlogType } from "@/common/schema/blog.schema";
 import { ServerActionState } from "@/common/schema/common.schema";
-import { createBlog, updateBlog } from "@services/requests/blogs";
+import { createBlog, deleteBlog, updateBlog } from "@services/requests/blogs";
+import { revalidatePath } from "next/cache";
 
 export const createBlogAction = async (
   blog: BlogSchema
@@ -82,5 +83,31 @@ export const updateBlogAction = async (
     // uncaught error
     // will be thrown to nearest error.tsx page
     throw new Error("something went wrong while creating category");
+  }
+};
+
+export const deleteBlogAction = async (
+  id: string
+): Promise<ServerActionState<undefined>> => {
+  try {
+    const response = await deleteBlog(id);
+    if (response.status === "failed" || response.status === "error") {
+      return {
+        errors: response.errors!,
+        success: false,
+        message: "failed to delete blog",
+      };
+    }
+    revalidatePath("/dashboard/blogs");
+    return {
+      errors: {},
+      message: "blog deleted",
+      success: true,
+    };
+  } catch (error) {
+    console.log("ee", error);
+    // uncaught error
+    // will be thrown to nearest error.tsx page
+    throw new Error("something went wrong while deleting blog");
   }
 };

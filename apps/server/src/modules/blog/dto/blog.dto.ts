@@ -28,7 +28,7 @@ export const blogSchemaDTO = z.object({
 export const blogDTO = blogSchemaDTO.merge(
   z.object({
     id: IdSchema,
-    category: categoryDTO,
+    category: categoryDTO.nullable(),
     tags: z.array(tagDTO).optional(),
     primaryImage: imageMetadataDTO.nullable(),
     images: z.array(imageMetadataDTO).optional(),

@@ -93,3 +93,19 @@ export const updateBlog = async (id: string, blog: BlogSchema) => {
     throw new Error("Oops, Something went wrong! Please try again");
   }
 };
+
+export const deleteBlog = async (id: string) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/blogs/blog/${id}`, {
+      method: "DELETE",
+    });
+
+    const deleteBlog: ApiResponse<BlogType> = await response.json();
+
+    return deleteBlog;
+  } catch (error) {
+    // uncaught error
+    // will be thrown to the nearest error.tsx page
+    throw new Error("Oops, Something went wrong! Please try again");
+  }
+};

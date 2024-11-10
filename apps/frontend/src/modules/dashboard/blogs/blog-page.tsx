@@ -13,10 +13,10 @@ const DashboardBlogPage = async () => {
           <h1 className="text-3xl">No Blogs</h1>
         </div>
       )}
-      <h1 className="text-xl underline">todo - table</h1>
       <Blogs blogs={blogs} />
     </div>
   );
 };
 
 export default DashboardBlogPage;
+ 

@@ -8,7 +8,7 @@ import {
   mutlerError,
   zodError
 } from "@middlewares/errors";
-
+ 
 const app = express();
 
 app.use(express.json());

@@ -6,7 +6,7 @@ config();
 // env constants
 const env = process.env;
 export const PORT = env.PORT || 5000;
-export const DB_URI =
+export const DB_URI = 
   env.DB_URI || "mongodb://localhost:27017/logicabeans_blog";
 export const NODE_ENV = env.NODE_ENV || "development";
 
