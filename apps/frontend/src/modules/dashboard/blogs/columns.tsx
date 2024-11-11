@@ -9,18 +9,27 @@ import {
   DropdownMenuTrigger,
 } from "@/common/components/ui/dropdown-menu";
 import { BlogType } from "@/common/schema/blog.schema";
+import Editor from "@logicabeans/lexical-editor";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import Image from "next/image";
 
 const columnHelper = createColumnHelper<BlogType>();
 
 type columnProps = {
-//   onEdit: (blog: BlogType) => void;
+  //   onEdit: (blog: BlogType) => void;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
+  onPrimaryImageClick: (url: string) => void;
+  onBlogDescriptionClick: (richText: string) => void;
 };
 
-export const getBlogColumns = ({ onEdit, onDelete }: columnProps) =>
+export const getBlogColumns = ({
+  onEdit,
+  onDelete,
+  onPrimaryImageClick,
+  onBlogDescriptionClick,
+}: columnProps) =>
   [
     columnHelper.accessor("title", {
       header: () => <b>Title</b>,
@@ -34,12 +43,41 @@ export const getBlogColumns = ({ onEdit, onDelete }: columnProps) =>
     columnHelper.accessor("tags", {
       header: () => <b>Tags</b>,
       cell: (info) => (
-        <p>
+        <span>
           {info
             .getValue()
             ?.map((el) => el.name)
             .join(", ")}
-        </p>
+        </span>
+      ),
+    }),
+
+    columnHelper.accessor("primaryImage", {
+      header: () => <b>Primary Image</b>,
+      cell: (info) => (
+        <div>
+          <Image
+            src={info.getValue().url}
+            width={100}
+            height={100}
+            alt="primary Image"
+            className="w-full aspect-video object-cover rounded-t-lg"
+            onClick={() => onPrimaryImageClick(info.getValue().url)}
+          />
+        </div>
+      ),
+    }),
+
+    columnHelper.accessor("description", {
+      header: () => <b>Description</b>,
+      cell: (info) => (
+        <Button
+          variant={"outline"}
+          size={"sm"}
+          onClick={() => onBlogDescriptionClick(info.getValue())}
+        >
+          click to see
+        </Button>
       ),
     }),
 
