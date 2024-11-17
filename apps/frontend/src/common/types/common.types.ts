@@ -20,7 +20,7 @@ export type ApiResponse<T> = {
   errors?: Record<string, string[]>;
   pagination?: Pagination;
 };
-
+ 
 export type ServerActionState<T> = {
   errors: Record<string, string[]>;
   message: string;

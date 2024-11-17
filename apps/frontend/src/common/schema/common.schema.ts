@@ -29,6 +29,11 @@ export type ApiResponse<T> = {
   pagination?: Pagination;
 };
 
+export type SearchParams = {
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+
 // server actions prevState type
 // export type ServerActionState<T> = {
 //   fields: T;
@@ -38,7 +43,7 @@ export type ApiResponse<T> = {
 // };
 
 export type ServerActionState<T> = {
-  errors: Record<string, string[]>;
+  errors?: Record<string, string[]>;
   message: string;
   success: boolean;
   data?: T;

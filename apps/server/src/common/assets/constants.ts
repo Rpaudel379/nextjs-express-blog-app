@@ -6,7 +6,7 @@ config();
 // env constants
 const env = process.env;
 export const PORT = env.PORT || 5000;
-export const DB_URI = 
+export const DB_URI =
   env.DB_URI || "mongodb://localhost:27017/logicabeans_blog";
 export const NODE_ENV = env.NODE_ENV || "development";
 
@@ -15,7 +15,7 @@ export const NODE_ENV = env.NODE_ENV || "development";
 // custom constants
 export const IMAGE_SIZE = 20 * 1024 * 1024; // 20 Mb - MAXIMUM IMAGE SIZE
 export const MAXIMUM_IMAGES = 6; // MAXIMUM NUMBER OF IMAGES TO UPLOAD
-export const PAGE_SIZE = 10; // PER PAGE DISPLAY
+export const PAGE_SIZE = 1; // PER PAGE DISPLAY
 export const PAGE = 1; // CURRENT PAGE
 
 export const SUCCESS = "success";

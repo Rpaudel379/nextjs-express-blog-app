@@ -1,9 +1,45 @@
 "use server";
 
 import { blogSchema, BlogSchema, BlogType } from "@/common/schema/blog.schema";
-import { ServerActionState } from "@/common/schema/common.schema";
-import { createBlog, deleteBlog, updateBlog } from "@services/requests/blogs";
+import { SearchParams, ServerActionState } from "@/common/schema/common.schema";
+import {
+  createBlog,
+  deleteBlog,
+  fetchBlogs,
+  updateBlog,
+} from "@services/requests/blogs";
 import { revalidatePath } from "next/cache";
+
+export const getInfiniteBlogsAction = async ({
+  searchParams,
+}: SearchParams): Promise<ServerActionState<BlogType[]>> => {
+  try {
+    const response = await fetchBlogs({ searchParams });
+
+    if (response.status === "failed" || response.status === "error") {
+      return {
+        success: false,
+        message: "failed to fetch blogs",
+        errors: response.errors,
+        data: [],
+      };
+    }
+
+    return {
+      success: true,
+      message: "blogs fetched",
+      data: response.data,
+      errors: {},
+    };
+  } catch (error) {
+    // throw new Error("Something went wrong while fetching blogs!");
+    return {
+      success: false,
+      data: [],
+      message: "failed to fetch blogs",
+    };
+  }
+};
 
 export const createBlogAction = async (
   blog: BlogSchema
@@ -27,7 +63,7 @@ export const createBlogAction = async (
       return {
         success: false,
         message: "failed to create blog",
-        errors: response.errors!,
+        errors: response.errors,
       };
     }
 
@@ -41,7 +77,7 @@ export const createBlogAction = async (
     console.log("ee", error);
     // uncaught error
     // will be thrown to nearest error.tsx page
-    throw new Error("something went wrong while creating category");
+    throw new Error("something went wrong while creating blog");
   }
 };
 
@@ -82,7 +118,7 @@ export const updateBlogAction = async (
     console.log("ee", error);
     // uncaught error
     // will be thrown to nearest error.tsx page
-    throw new Error("something went wrong while creating category");
+    throw new Error("something went wrong while updating blog");
   }
 };
 

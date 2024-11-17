@@ -31,8 +31,10 @@ export const getAllBlogs = async (
   next: NextFunction
 ) => {
   try {
+    // console.log(req.query.page, req.query.pageSize);
+    console.log("dao", req.query);
     const page = parseInt(req.query.page as string) || PAGE;
-    const pageSize = parseInt(req.query.pageSize as string) || PAGE_SIZE;
+    const pageSize = parseInt(req.query.limit as string) || PAGE_SIZE;
 
     const blogs = await BlogService.findAllBlogs(page, pageSize);
 

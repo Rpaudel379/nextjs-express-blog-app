@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "@/common/assets/constants/constants";
 import { ApiError } from "@/common/utils/errors/api-error";
 import { BlogSchema, BlogType } from "@/common/schema/blog.schema";
-import { ApiResponse } from "@/common/schema/common.schema";
+import { ApiResponse, SearchParams } from "@/common/schema/common.schema";
 import { notFound } from "next/navigation";
 
 export const createBlog = async (blog: BlogSchema) => {
@@ -26,9 +26,15 @@ export const createBlog = async (blog: BlogSchema) => {
   }
 };
 
-export const fetchBlogs = async () => {
+export const fetchBlogs = async ({ searchParams }: SearchParams) => {
   try {
-    const response = await fetch(`${BACKEND_URL}/blogs`, {
+    const query =
+      searchParams &&
+      Object.entries(searchParams)
+        .map(([k, v]) => `${k}=${v}`)
+        .join("&");
+
+    const response = await fetch(`${BACKEND_URL}/blogs?${query}`, {
       method: "GET",
       cache: "no-cache",
       // next: {

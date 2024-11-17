@@ -3,7 +3,9 @@ import Blogs from "@/common/components/dashboard/blogs/blogs";
 import { BlogType } from "@/common/schema/blog.schema";
 
 const DashboardBlogPage = async () => {
-  const { data: blogs }: { data?: BlogType[] } = await fetchBlogs();
+  const { data: blogs }: { data?: BlogType[] } = await fetchBlogs({
+    searchParams: { limit: "10" },
+  });
 
   return (
     <div className="space-y-5 text-center">
@@ -19,4 +21,3 @@ const DashboardBlogPage = async () => {
 };
 
 export default DashboardBlogPage;
- 
